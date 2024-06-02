@@ -84,12 +84,12 @@ class LinkedList {
     return restIndex !== null ? restIndex + 1 : null;
   }
 
-  toString(){
-    if(this.rest){
+  toString() {
+    if (this.rest) {
       return `( ${this.first} ) -> ` + this.rest.toString();
     }
-    if(!this.rest){
-      return `( ${this.first} ) -> null`
+    if (!this.rest) {
+      return `( ${this.first} ) -> null`;
     }
   }
 }
@@ -98,9 +98,45 @@ let link = new LinkedList(5);
 link.append(6);
 link.append(7);
 
-// class Node{
-//   constructor(value=null, nextNode=null){
-//     this.value = value;
-//     this.nextNode = nextNode
-//   }
-// }
+class Node {
+  constructor(value = null, nextNode = null) {
+    this.value = value;
+    this.nextNode = nextNode;
+  }
+}
+
+class LinkedList2 {
+  constructor(value=null) {
+    if(value){
+      this.head = new Node(value)
+    }else{
+      this.head = null;
+    }
+  }
+
+  append(value) {
+    let newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    let temp = this.head;
+    while (temp.nextNode) {
+      temp = temp.nextNode;
+    }
+    temp.nextNode = newNode;
+  }
+
+  prepend(value) {
+    let newNode = new Node(value);
+    if (!this.head) {
+      this.head = newNode;
+      return;
+    }
+    newNode.nextNode = this.head;
+    this.head = newNode;
+  }
+}
+
+let newLink = new LinkedList2(5)
+newLink.append(6)
